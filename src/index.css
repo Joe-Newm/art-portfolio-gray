@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Playfair Display", serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 700;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: #06373a;
+  background-color: #fff5df;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,24 +16,21 @@
 }
 
 Nav {
-  border-bottom: 2px solid white;
-  display: flex;
   width: 100;
   height: 80px;
-  justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: white;
+  background-color: #06373a;
 }
 
-a {
+Nav a {
   font-weight: 500;
-  color: darkgreen;
+  color: #fff5df;
   text-decoration: inherit;
 }
 
-a:hover {
-  color: green;
+Nav a:hover {
+  color: white;
 }
 
 body {
