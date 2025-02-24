@@ -1,11 +1,12 @@
 
 
-export default function About() {
+
+export default function Contact() {
 
 
   return (
     <div class="container mx-auto mt-10">
-      <h1>About</h1>
+      <h1>Contact</h1>
     </div>
-  );
+  )
 }
