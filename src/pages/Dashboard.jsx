@@ -17,10 +17,10 @@ export default function Dashboard() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex container mx-auto mt-10 justify-center items-center gap-10">
+      <div className="flex flex-col container mx-auto mt-10 justify-center items-center gap-10">
         <p>Dashboard you are now logged in</p>
         <button onClick={signout}> sign out </button>
-        <hr />
+        <hr className="border-2 w-lvw mb-10" />
       </div>
       <div>
         <p>hello</p>
