@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx"
 import Nav from "./components/Nav.jsx"
@@ -10,8 +10,22 @@ import Footer from "./components/Footer.jsx"
 import ProtectedRoute from './pages/ProtectedRoute.jsx';
 import './App.css'
 
+import { auth } from './firebaseConfig'
+import { onAuthStateChanged } from 'firebase/auth';
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) return <div className="flex justify-center items-center min-h-screen"><p> Loading... </p></div>
 
   return (
 

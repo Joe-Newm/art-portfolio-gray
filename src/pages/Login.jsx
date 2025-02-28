@@ -11,7 +11,6 @@ export default function Login() {
   const [error, setError] = useState(""); // State to store login errors
 
 
-
   const onLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
