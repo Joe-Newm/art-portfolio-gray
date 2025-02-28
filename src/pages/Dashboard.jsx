@@ -18,8 +18,11 @@ export default function Dashboard() {
     }
   }
 
-  const submitPost = async () => {
+  const submitPost = async (e) => {
+    e.preventDefault();
     console.log('post')
+    setTitle('');
+    setDesc('');
   }
 
   return (
@@ -30,29 +33,35 @@ export default function Dashboard() {
         <hr className="border-2 w-lvw mb-10" />
       </div>
       <div className="flex justify-center">
-        <div className="flex flex-col justify-center mt-10 w-100 mb-20">
+        <div className="flex flex-col justify-center mt-10 w-200 mb-20">
           <h2 className="text-2xl border-b-2 mb-5">New Art Post</h2>
-          <form onSubmit={submitPost} className="flex flex-col">
-            <label htmlFor="title">Art Title</label>
-            <input
-              id="title"
-              className="border-2 w-full h-10 pl-2 bg-white mb-5"
-              name="title"
-              type="text"
-              required
-              placeholder="Title"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <label htmlFor="desc">Art Description</label>
-            <input
-              id="desc"
-              className="border-2 w-full h-10 pl-2 bg-white h-20"
-              name="desc"
-              type="text"
-              required
-              placeholder="Description"
-              onChange={(e) => setDesc(e.target.value)}
-            />
+          <form onSubmit={submitPost} className="flex gap-10">
+            <div className="w-60 h-60 bg-gray-600"></div>
+            <div>
+              <label htmlFor="title">Art Title</label>
+              <input
+                id="title"
+                className="border-2 w-full h-10 pl-2 bg-white mb-5"
+                name="title"
+                type="text"
+                required
+                placeholder="Title"
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <label htmlFor="desc">Art Description</label>
+              <input
+                id="desc"
+                className="border-2 w-full h-10 pl-2 bg-white h-20 mb-5"
+                name="desc"
+                type="text"
+                required
+                placeholder="Description"
+                onChange={(e) => setDesc(e.target.value)}
+              />
+              <button type="submit">
+                Submit
+              </button>
+            </div>
           </form>
 
         </div>
