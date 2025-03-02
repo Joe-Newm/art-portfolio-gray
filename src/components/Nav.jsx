@@ -5,7 +5,7 @@ export default function Nav() {
 
   return (
     <nav className="align-center items-center">
-      <div className="container mx-auto flex justify-between">
+      <div className="container mx-auto flex justify-between h-full">
         <div>
           <Link to="/" className="text-[45px]">Gray Risinger</Link>
         </div>
