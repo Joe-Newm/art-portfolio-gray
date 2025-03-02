@@ -47,7 +47,7 @@ export default function Dashboard() {
         <div className="flex flex-col justify-center mt-10 w-200 mb-20">
           <h2 className="text-2xl border-b-2 mb-5">New Art Post</h2>
           <form onSubmit={submitPost} className="flex gap-10">
-            <div className="w-60 h-60 bg-gray-600"></div>
+            <input type="file" className="w-60 h-60 bg-gray-600 items-center text-white" id="fileInput" accept="image/*" required />
             <div>
               <label htmlFor="title">Art Title</label>
               <input
@@ -76,8 +76,8 @@ export default function Dashboard() {
           </form>
 
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
 
