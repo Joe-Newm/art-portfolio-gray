@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { getDatabase, ref, push } from "firebase/database";
 
 export default function Dashboard() {
   const [title, setTitle] = useState('');
@@ -21,8 +22,18 @@ export default function Dashboard() {
   const submitPost = async (e) => {
     e.preventDefault();
     console.log('post')
-    setTitle('');
-    setDesc('');
+
+    const db = getDatabase();
+
+    try {
+      await push(ref(db, 'posts'), {
+        image: image,
+        name: title,
+        description: desc
+      })
+    } catch (error) {
+      console.log('error: ', error);
+    }
   }
 
   return (
