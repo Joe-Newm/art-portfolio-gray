@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import { auth, db, storage } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ref, push, onValue } from "firebase/database";
+import { ref, push, onValue, remove } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function Dashboard() {
@@ -31,10 +31,14 @@ export default function Dashboard() {
     const unsubscribe = onValue(postsRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
-        if (Array.isArray(data)) {
-          setPosts(data);
+        const loadedPosts = Object.keys(data).map((key) => ({
+          id: key, // Firebase-generated key
+          ...data[key]
+        }));
+        if (Array.isArray(loadedPosts)) {
+          setPosts(loadedPosts);
         } else {
-          const postsArray = Object.values(data);
+          const postsArray = Object.values(loadedPosts);
           setPosts(postsArray);
         }
       } else {
@@ -43,6 +47,20 @@ export default function Dashboard() {
     })
     return () => unsubscribe();
   }, []);
+
+
+  // delete post 
+  const onDelete = async (postid) => {
+    console.log('post deleted')
+    if (!postid) return;
+
+    try {
+      await remove(ref(db, `posts/${postid}`))
+      console.log(`post ${postid} has been deleted`)
+    } catch (error) {
+      console.log("error deleting post: ", error);
+    }
+  }
 
 
 
@@ -122,9 +140,12 @@ export default function Dashboard() {
           <div className="border-black border-b-2 mb-5 mt-5 w-full"></div>
           <div className="container mx-auto mt-10">
             <h1 className="mb-10 text-center"> Work </h1>
-            <div className="mosaic-container columns-1 sm:columns-2 md:columns-3 gap-4 mb-10">
-              {posts.map((post, id) => (
-                <img key={id} src={post.imageURL} alt="painting" className="mosaic-item mb-4" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+              {posts.map((post) => (
+                <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
+                  <img src={post.imageURL} alt="painting" className="mosaic-item" />
+                  <button onClick={() => onDelete(post.id)} className="mt-4">Delete</button>
+                </div>
               ))}
             </div>
           </div>

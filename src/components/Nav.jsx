@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { auth } from "../firebaseConfig";
 
 export default function Nav() {
 
@@ -13,6 +14,10 @@ export default function Nav() {
           <Link to="/">Work</Link>
           <Link to="/About">About</Link>
           <Link to="/Contact">Contact</Link>
+          {auth.currentUser ?
+            <Link to="/Dashboard">Dashboard</Link>
+            : null
+          }
         </div>
       </div>
     </nav>
