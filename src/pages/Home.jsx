@@ -2,7 +2,7 @@ import headerImage from "../assets/gray.jpg";
 import { ref, onValue } from "firebase/database";
 import { useState, useEffect } from "react";
 import { db } from "../firebaseConfig";
-
+import { Link } from "react-router-dom";
 
 
 export default function Home() {
@@ -36,7 +36,11 @@ export default function Home() {
         <h1 className="mb-10 text-center"> Work </h1>
         <div className="mosaic-container columns-1 sm:columns-2 md:columns-3 gap-4 mb-10">
           {posts.map((post, id) => (
-            <img key={id} src={post.imageURL} alt="painting" className="mosaic-item mb-4" />
+            <Link
+              to="/MoreInfo"
+              state={{ post }}>
+              <img key={id} src={post.imageURL} alt="painting" className="mosaic-item mb-4" />
+            </Link>
           ))}
         </div>
       </div>
