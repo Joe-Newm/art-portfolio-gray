@@ -17,10 +17,10 @@ export default function Home() {
       if (snapshot.exists()) {
         const data = snapshot.val();
         if (Array.isArray(data)) {
-          setPosts(data);
+          setPosts(data.reverse());
         } else {
           const postsArray = Object.values(data);
-          setPosts(postsArray);
+          setPosts(postsArray.reverse());
         }
       } else {
         console.log("error fetching data");

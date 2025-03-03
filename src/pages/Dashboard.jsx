@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ref, push, onValue, remove } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function Dashboard() {
   const [title, setTitle] = useState('');
@@ -36,10 +38,10 @@ export default function Dashboard() {
           ...data[key]
         }));
         if (Array.isArray(loadedPosts)) {
-          setPosts(loadedPosts);
+          setPosts(loadedPosts.reverse());
         } else {
           const postsArray = Object.values(loadedPosts);
-          setPosts(postsArray);
+          setPosts(postsArray.reverse());
         }
       } else {
         console.log("error fetching data");
@@ -100,13 +102,13 @@ export default function Dashboard() {
   return (
     <div className="container mx-auto">
       <div className="flex flex-col container mx-auto mt-10 justify-center items-center gap-10">
-        <p>Dashboard you are now logged in</p>
+        <h1>Dashboard, you are now logged in</h1>
         <button onClick={signout}> sign out </button>
         <hr className="border-2 w-lvw mb-10" />
       </div>
       <div className="flex justify-center">
         <div className="flex flex-col justify-center mt-10 w-200 mb-20">
-          <h2 className="text-2xl border-b-2 mb-5">New Art Post</h2>
+          <h2 className="text-3xl border-b-2 mb-5">New Art Post</h2>
           <form onSubmit={submitPost} className="flex gap-10">
             <input type="file" className="w-60 h-60 bg-gray-600 items-center text-white" id="fileInput" accept="image/*" required onChange={(e) => setImage(e.target.files[0])} />
             <div>
@@ -121,15 +123,14 @@ export default function Dashboard() {
                 placeholder="Title"
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <label htmlFor="desc">Art Description</label>
-              <input
+              <label htmlFor="desc">Art Description (optional)</label>
+              <textarea
                 id="desc"
-                className="border-2 w-full h-10 pl-2 bg-white h-20 mb-5"
+                className="border-2 w-full h-60 pl-2 bg-white h-20 mb-5 resize-none"
                 name="desc"
                 type="text"
                 value={desc}
-                required
-                placeholder="Description"
+                placeholder="write your description here..."
                 onChange={(e) => setDesc(e.target.value)}
               />
               <button type="submit">
@@ -138,12 +139,16 @@ export default function Dashboard() {
             </div>
           </form>
           <div className="container mx-auto mt-10">
-            <h2 className="text-2xl border-b-2 mb-5 mt-20 mb-10 text-center"> Work </h2>
+            <h2 className="text-3xl border-b-2 mb-5 mt-20 mb-10 text-center"> Work </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
               {posts.map((post) => (
                 <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
                   <img src={post.imageURL} alt="painting" className="mosaic-item" />
-                  <button onClick={() => onDelete(post.id)} className="mt-4">Delete</button>
+                  <div className="flex gap-4">
+                    <button onClick={() => onDelete(post.id)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
+                    <button className="flex mt-4 !w-10 justify-center"><EditIcon /></button>
+                  </div>
+
                 </div>
               ))}
             </div>
