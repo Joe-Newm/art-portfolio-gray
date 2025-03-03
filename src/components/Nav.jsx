@@ -15,7 +15,11 @@ export default function Nav() {
           <Link to="/About">About</Link>
           <Link to="/Contact">Contact</Link>
           {auth.currentUser ?
-            <Link to="/Dashboard">Dashboard</Link>
+            <Link
+              to="/Dashboard"
+              className="bg-white p-3 rounded-md !text-[#06373a] hover:bg-transparent hover:!text-white hover:outline hover:outline-1 hover:outline-white">
+              Dashboard
+            </Link>
             : null
           }
         </div>

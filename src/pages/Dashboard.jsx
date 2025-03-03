@@ -137,9 +137,8 @@ export default function Dashboard() {
               </button>
             </div>
           </form>
-          <div className="border-black border-b-2 mb-5 mt-5 w-full"></div>
           <div className="container mx-auto mt-10">
-            <h1 className="mb-10 text-center"> Work </h1>
+            <h2 className="text-2xl border-b-2 mb-5 mt-20 mb-10 text-center"> Work </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
               {posts.map((post) => (
                 <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
