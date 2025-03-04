@@ -143,7 +143,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
               {posts.map((post) => (
                 <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
-                  <img src={post.imageURL} alt="painting" className="mosaic-item" />
+                  <img src={post.imageURL} alt="painting" className="mosaic-item h-60" />
                   <div className="flex gap-4">
                     <button onClick={() => onDelete(post.id)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
                     <button className="flex mt-4 !w-10 justify-center"><EditIcon /></button>
