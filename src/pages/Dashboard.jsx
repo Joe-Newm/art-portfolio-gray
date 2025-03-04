@@ -126,7 +126,7 @@ export default function Dashboard() {
               <label htmlFor="desc">Art Description (optional)</label>
               <textarea
                 id="desc"
-                className="border-2 w-full h-60 pl-2 bg-white h-20 mb-5 resize-none"
+                className="border-2 w-full h-60 pl-2 bg-white mb-5 resize-none"
                 name="desc"
                 type="text"
                 value={desc}
