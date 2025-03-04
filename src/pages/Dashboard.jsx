@@ -3,7 +3,7 @@ import { auth, db, storage } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ref, push, onValue, remove } from "firebase/database";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
+import { deleteObject, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -52,13 +52,17 @@ export default function Dashboard() {
 
 
   // delete post 
-  const onDelete = async (postid) => {
+  const onDelete = async (postid, image) => {
     console.log('post deleted')
     if (!postid) return;
 
     try {
-      await remove(ref(db, `posts/${postid}`))
-      console.log(`post ${postid} has been deleted`)
+      const decodedURL = decodeURIComponent(image);
+      const path = decodedURL.split('/o/')[1].split('?')[0];
+
+      await remove(ref(db, `posts/${postid}`));
+      await deleteObject(storageRef(storage, path));
+      console.log(`post ${postid} has been deleted`);
     } catch (error) {
       console.log("error deleting post: ", error);
     }
@@ -145,7 +149,7 @@ export default function Dashboard() {
                 <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
                   <img src={post.imageURL} alt="painting" className="mosaic-item h-60" />
                   <div className="flex gap-4">
-                    <button onClick={() => onDelete(post.id)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
+                    <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
                     <button className="flex mt-4 !w-10 justify-center"><EditIcon /></button>
                   </div>
 
