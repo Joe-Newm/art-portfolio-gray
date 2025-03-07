@@ -6,12 +6,17 @@ import { ref, push, onValue, remove } from "firebase/database";
 import { deleteObject, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import EditModal from '../components/EditModal';
 
 export default function Dashboard() {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [image, setImage] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [post, setPost] = useState(null);
+  const [postName, setPostName] = useState(null);
+  const [postDesc, setPostDesc] = useState(null);
   const navigate = useNavigate();
 
   const signout = async () => {
@@ -22,6 +27,13 @@ export default function Dashboard() {
     } catch (error) {
       console.log('error signing out:', error);
     }
+  }
+
+  const Popup = (postid, postName, postDesc) => {
+    setPost(postid);
+    setPostName(postName);
+    setPostDesc(postDesc);
+    setIsOpen(true);
   }
 
 
@@ -149,13 +161,21 @@ export default function Dashboard() {
                 <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
                   <img src={post.imageURL} alt="painting" className="mosaic-item h-60" />
                   <div className="flex gap-4">
-                    <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
-                    <button className="flex mt-4 !w-10 justify-center"><EditIcon /></button>
-                  </div>
 
+                    <button onClick={() => onDelete(post.id)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
+                    <button className="flex mt-4 !w-10 justify-center" onClick={() => Popup(post.id, post.name, post.description)}><EditIcon /></button>
+                  </div>
                 </div>
               ))}
             </div>
+          </div>
+          <div>
+
+
+            {isOpen && (
+              <EditModal postid={post} postName={postName} postDesc={postDesc} isOpen={isOpen} setIsOpen={setIsOpen} />
+            )}
+
           </div>
 
         </div>
