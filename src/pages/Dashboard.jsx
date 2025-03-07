@@ -65,7 +65,7 @@ export default function Dashboard() {
 
   // delete post 
   const onDelete = async (postid, image) => {
-    console.log('post deleted')
+    console.log(image)
     if (!postid) return;
 
     try {
@@ -161,8 +161,7 @@ export default function Dashboard() {
                 <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
                   <img src={post.imageURL} alt="painting" className="mosaic-item h-60" />
                   <div className="flex gap-4">
-
-                    <button onClick={() => onDelete(post.id)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
+                    <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
                     <button className="flex mt-4 !w-10 justify-center" onClick={() => Popup(post.id, post.name, post.description)}><EditIcon /></button>
                   </div>
                 </div>
@@ -170,8 +169,6 @@ export default function Dashboard() {
             </div>
           </div>
           <div>
-
-
             {isOpen && (
               <EditModal postid={post} postName={postName} postDesc={postDesc} isOpen={isOpen} setIsOpen={setIsOpen} />
             )}
