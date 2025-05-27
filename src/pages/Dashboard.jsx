@@ -9,12 +9,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import EditModal from '../components/EditModal';
 
 export default function Dashboard() {
+  const [post, setPost] = useState(null);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [image, setImage] = useState(null);
   const [posts, setPosts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [post, setPost] = useState(null);
   const [postName, setPostName] = useState(null);
   const [postDesc, setPostDesc] = useState(null);
   const navigate = useNavigate();
@@ -29,10 +29,8 @@ export default function Dashboard() {
     }
   }
 
-  const Popup = (postid, postName, postDesc) => {
-    setPost(postid);
-    setPostName(postName);
-    setPostDesc(postDesc);
+  const Popup = (post) => {
+    setPost(post);
     setIsOpen(true);
   }
 
@@ -162,7 +160,7 @@ export default function Dashboard() {
                   <img src={post.imageURL} alt="painting" className="mosaic-item h-60" />
                   <div className="flex gap-4">
                     <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
-                    <button className="flex mt-4 !w-10 justify-center" onClick={() => Popup(post.id, post.name, post.description)}><EditIcon /></button>
+                    <button className="flex mt-4 !w-10 justify-center" onClick={() => Popup(post)}><EditIcon /></button>
                   </div>
                 </div>
               ))}
@@ -170,7 +168,7 @@ export default function Dashboard() {
           </div>
           <div>
             {isOpen && (
-              <EditModal postid={post} postName={postName} postDesc={postDesc} isOpen={isOpen} setIsOpen={setIsOpen} />
+              <EditModal post={post} isOpen={isOpen} setIsOpen={setIsOpen} />
             )}
 
           </div>
