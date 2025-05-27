@@ -33,7 +33,7 @@ export default function EditModal({ post, isOpen, setIsOpen }) {
           <label>Art Title</label>
         <input type="text" name="title" className="border-2 w-full h-10 pl-2 bg-white mb-5"  value={title} onChange={(e) => setTitle(e.target.value)}></input>
           <label>Art Description</label>
-        <textarea type="text" name="desc" className="border-2 w-full h-10 pl-2 bg-white mb-5" value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
+        <textarea type="text" name="desc" className="border-2 w-full h-10 pl-2 bg-white mb-5 h-76 resize-none" value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
 
         <button type="submit">Submit</button>
         </form>
