@@ -138,6 +138,7 @@ const handleFileChange = (e) => {
         <div className="flex flex-col justify-center mt-10 w-200 mb-20">
           <h2 className="text-3xl border-b-2 mb-5">New Art Post</h2>
 
+
           <form onSubmit={submitPost} className="flex gap-10">
             <div className="relative flex flex-col">
             <label>Upload Art</label>
@@ -183,7 +184,7 @@ const handleFileChange = (e) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
               {posts.map((post) => (
                 <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
-                  <img src={post.imageURL} alt="painting" className="mosaic-item h-60" />
+                  <img src={post.imageURL} alt="painting" className="mosaic-item h-60 " />
                   <div className="flex gap-4">
                     <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
                     <button className="flex mt-4 !w-10 justify-center" onClick={() => Popup(post)}><EditIcon /></button>

@@ -15,9 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
- h2, h3, h4, h5, h6 {
+h3, h4, h5, h6 {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 500;
+}
+
+h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 600;
 }
 
 label {
