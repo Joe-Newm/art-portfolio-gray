@@ -8,10 +8,10 @@ export default function Nav() {
     <nav className="align-center items-center">
       <div className="container mx-auto flex justify-between h-full">
         <div>
-          <Link to="/" className="text-[45px]">Gray Risinger</Link>
+          <Link to="/" className="text-[45px] font-serif">Gray Risinger</Link>
         </div>
-        <div className="flex gap-4 items-center">
-          <Link to="/">Work</Link>
+        <div className="flex gap-6 items-center">
+          <Link to="/" className="">Work</Link>
           <Link to="/About">About</Link>
           <Link to="/Contact">Contact</Link>
           {auth.currentUser ?

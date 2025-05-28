@@ -38,8 +38,9 @@ export default function Home() {
           {posts.map((post, id) => (
             <Link
               to="/MoreInfo"
-              state={{ post }}>
-              <img key={id} src={post.imageURL} alt="painting" className="mosaic-item mb-4" />
+              state={{ post }}
+              key={id}>
+              <img src={post.imageURL} alt="painting" className="mosaic-item mb-4" />
             </Link>
           ))}
         </div>

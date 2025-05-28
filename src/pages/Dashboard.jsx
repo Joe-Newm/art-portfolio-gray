@@ -7,6 +7,7 @@ import { deleteObject, ref as storageRef, uploadBytes, getDownloadURL } from "fi
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EditModal from '../components/EditModal';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 export default function Dashboard() {
   const [post, setPost] = useState(null);
@@ -17,6 +18,7 @@ export default function Dashboard() {
   const [isOpen, setIsOpen] = useState(false);
   const [postName, setPostName] = useState(null);
   const [postDesc, setPostDesc] = useState(null);
+  const [preview, setPreview] = useState(null);
   const navigate = useNavigate();
 
   const signout = async () => {
@@ -33,6 +35,16 @@ export default function Dashboard() {
     setPost(post);
     setIsOpen(true);
   }
+
+  // display image after upload
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  setImage(e.target.files[0]);
+
+  if (file) {
+    setPreview(URL.createObjectURL(file));
+  }
+}
 
 
 
@@ -106,7 +118,8 @@ export default function Dashboard() {
       setTitle('');
       setDesc('');
       setImage(null);
-      document.getElementById('fileInput').value = '';
+      setPreview(null);
+      //document.getElementById('fileInput').value = '';
 
     } catch (error) {
       console.log('error posting image: ', error);
@@ -115,21 +128,34 @@ export default function Dashboard() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-col container mx-auto mt-10 justify-center items-center gap-10">
-        <h1>Dashboard, you are now logged in</h1>
-        <button onClick={signout}> sign out </button>
+      <div className="flex flex-col container mx-auto mt-10 justify-center items-center ">
+        <h1 className="mt-6">Dashboard </h1>
+        <h2 className="text-3xl   text-center">you are now logged in</h2>
+        <button onClick={signout} className="mt-10 mb-10"> sign out </button>
         <hr className="border-2 w-lvw mb-10" />
       </div>
       <div className="flex justify-center">
         <div className="flex flex-col justify-center mt-10 w-200 mb-20">
           <h2 className="text-3xl border-b-2 mb-5">New Art Post</h2>
+
           <form onSubmit={submitPost} className="flex gap-10">
-            <input type="file" className="w-60 h-60 bg-gray-600 items-center text-white" id="fileInput" accept="image/*" required onChange={(e) => setImage(e.target.files[0])} />
+            <div className="relative flex flex-col">
+            <label>Upload Art</label>
+          <label htmlFor="file-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
+            <UploadFileIcon sx={{ fontSize: 80, color: "white" }} className="mt-6"/>
+        </label>
+
+        <input id="file-upload" type="file" className="hidden" onChange={handleFileChange}/>
+
+        {preview && (
+          <img src={preview} className="mt-4 w-42"/>
+        )}
+      </div>
             <div>
               <label htmlFor="title">Art Title</label>
               <input
                 id="title"
-                className="border-2 w-full h-10 pl-2 bg-white mb-5"
+                className="border-2 w-full h-10 pl-2 bg-white mb-5 rounded-md"
                 name="title"
                 type="text"
                 value={title}
@@ -140,7 +166,7 @@ export default function Dashboard() {
               <label htmlFor="desc">Art Description (optional)</label>
               <textarea
                 id="desc"
-                className="border-2 w-full h-60 pl-2 bg-white mb-5 resize-none"
+                className="border-2 w-full h-60 p-2 bg-white mb-5 resize-none rounded-md"
                 name="desc"
                 type="text"
                 value={desc}
