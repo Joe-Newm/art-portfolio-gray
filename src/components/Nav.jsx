@@ -17,7 +17,7 @@ export default function Nav() {
           {auth.currentUser ?
             <Link
               to="/Dashboard"
-              className="bg-white p-3 rounded-md !text-[#06373a] hover:bg-transparent hover:!text-white hover:outline hover:outline-1 hover:outline-white">
+              className="btn">
               Dashboard
             </Link>
             : null

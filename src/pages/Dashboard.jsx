@@ -127,7 +127,7 @@ const handleFileChange = (e) => {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto pl-4 pr-4">
       <div className="flex flex-col container mx-auto mt-10 justify-center items-center ">
         <h1 className="mt-6">Dashboard </h1>
         <h2 className="text-3xl   text-center">you are now logged in</h2>
@@ -139,7 +139,7 @@ const handleFileChange = (e) => {
           <h2 className="text-3xl border-b-2 mb-5">New Art Post</h2>
 
 
-          <form onSubmit={submitPost} className="flex gap-10">
+          <form onSubmit={submitPost} className="flex gap-10 flex-col md:flex-row">
             <div className="relative flex flex-col">
             <label>Upload Art</label>
           <label htmlFor="file-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
@@ -183,8 +183,8 @@ const handleFileChange = (e) => {
             <h2 className="text-3xl border-b-2 mb-5 mt-20 mb-10 text-center"> Work </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
               {posts.map((post) => (
-                <div key={post.id} className="bg-white border-2 mb-4 p-4 rounded-md">
-                  <img src={post.imageURL} alt="painting" className="mosaic-item h-60 " />
+                <div key={post.id} className="bg-white shadow-lg border-gray-200 border-1 mb-4 p-4 rounded-md">
+                  <img src={post.imageURL} alt="painting" className="mosaic-item h-60 object-cover w-full" />
                   <div className="flex gap-4">
                     <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
                     <button className="flex mt-4 !w-10 justify-center" onClick={() => Popup(post)}><EditIcon /></button>
