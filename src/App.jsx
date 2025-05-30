@@ -10,6 +10,7 @@ import Contact from "./pages/Contact.jsx"
 import Footer from "./components/Footer.jsx"
 import ProtectedRoute from './pages/ProtectedRoute.jsx';
 import ScrollToTop from "./components/ScrollToTop";
+import NotFound from "./components/NotFound"
 import './App.css'
 
 import { auth } from './firebaseConfig'
@@ -44,6 +45,7 @@ function App() {
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/MoreInfo" element={<MoreInfo />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
