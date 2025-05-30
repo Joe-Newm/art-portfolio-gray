@@ -20,6 +20,7 @@ export default function Dashboard() {
   const [postName, setPostName] = useState(null);
   const [postDesc, setPostDesc] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [activeTab, setActiveTab] = useState('tab1')
   const navigate = useNavigate();
 
   const signout = async () => {
@@ -136,8 +137,22 @@ const handleFileChange = (e) => {
         <h1 className="mt-6">Dashboard </h1>
         <h2 className="text-3xl   text-center">you are now logged in</h2>
         <button onClick={signout} className="mt-10 mb-10"> sign out </button>
-        <hr className="border-2 w-lvw mb-10" />
+        <div className="h-20 bg-[#06373a] w-lvw mb-10">
+          <div className="container mx-auto max-w-200 h-full flex">
+
+            <a className={(activeTab === 'tab1' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer` : `select-none w-24 h-full font-bold flex justify-center items-center text-white border-l-2 border-[#fff5df] text-center cursor-pointer`)}
+             onClick={() => setActiveTab('tab1')}
+            >Art Posts</a>
+
+            <a className={(activeTab === 'tab2' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white border-r-2 border-[#fff5df] text-center cursor-pointer`)}
+             onClick={() => setActiveTab('tab2')}
+            >Website Settings</a>
+
+          </div>
+        </div>
       </div>
+
+      {activeTab === 'tab1' ? (
       <div className="flex justify-center">
         <div className="flex flex-col justify-center mt-10 w-200 mb-20">
           <h2 className="text-3xl border-b-2 mb-5">New Art Post</h2>
@@ -160,7 +175,7 @@ const handleFileChange = (e) => {
               <label htmlFor="title">Art Title</label>
               <input
                 id="title"
-                className="border-2 w-full h-10 pl-2 bg-white mb-5 rounded-md"
+                className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md"
                 name="title"
                 type="text"
                 value={title}
@@ -171,7 +186,7 @@ const handleFileChange = (e) => {
               <label htmlFor="desc">Art Description (optional)</label>
               <textarea
                 id="desc"
-                className="border-2 w-full h-60 p-2 bg-white mb-5 resize-none rounded-md"
+                className="border-2 w-full h-60 p-4 bg-white mb-5 resize-none rounded-md"
                 name="desc"
                 type="text"
                 value={desc}
@@ -216,7 +231,20 @@ const handleFileChange = (e) => {
           </div>
 
         </div>
-      </div >
+      </div > )
+      : (
+        /* ################################################################## Tab 2 ################################################################## */
+      <div className="container mx-auto max-w-200 mt-10 mb-20">
+          <h2 className="text-3xl border-b-2 mb-5">About Page</h2>
+
+          <form className="flex flex-col">
+            <label>Heading</label>
+            <input className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md"></input>
+            <label>Message</label>
+            <textarea className="border-2 w-full h-60 p-4 bg-white mb-5 rounded-md resize-none"></textarea>
+          </form>
+      </div>
+      )}
     </div >
   )
 }
