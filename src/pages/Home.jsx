@@ -33,7 +33,7 @@ export default function Home() {
     <>
       <img src={headerImage} className="headerImage" loading="lazy"/>
       <div className="container mx-auto mt-10 pl-4 pr-4">
-        <h1 className="mb-10 text-center"> Work </h1>
+        <h1 className="mb-10 text-center border-b-2"> Work </h1>
         <div className="mosaic-container columns-1 sm:columns-2 md:columns-3 gap-4 mb-10">
           {posts.map((post, id) => (
             <Link

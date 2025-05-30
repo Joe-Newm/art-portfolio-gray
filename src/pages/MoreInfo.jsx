@@ -6,8 +6,8 @@ export default function MoreInfo() {
 
   return (
     <div className="container mx-auto flex gap-20 mt-20 mb-20">
-      <img src={post.imageURL} alt="painting" className="w-xl" />
-      <div>
+      <img src={post.imageURL} alt="painting" className="w-1/2" />
+      <div className="w-1/2">
         <h1>{post.name}</h1>
         <p className="mb-24">{post.description}</p>
         {post.availability === false ?
