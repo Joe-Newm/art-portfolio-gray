@@ -39,12 +39,12 @@ Nav {
 
 Nav a {
   font-weight: 500;
-  color: #fff5df;
+  color: white;
   text-decoration: inherit;
 }
 
 Nav a:hover {
-  color: white;
+  color: #fff5df;
 }
 
 body {

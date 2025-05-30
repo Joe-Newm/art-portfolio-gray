@@ -13,6 +13,7 @@ export default function Dashboard() {
   const [post, setPost] = useState(null);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
+  const [available, setAvailable] = useState(true);
   const [image, setImage] = useState(null);
   const [posts, setPosts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -96,7 +97,8 @@ const handleFileChange = (e) => {
     e.preventDefault();
     console.log('post')
 
-    console.log(title, desc)
+    console.log(title, desc, available)
+
 
 
     const fileRef = storageRef(storage, `images/${Date.now()}_${image.name}`);
@@ -110,7 +112,8 @@ const handleFileChange = (e) => {
       await push(ref(db, 'posts'), {
         imageURL: downloadURL,
         name: title,
-        description: desc
+        description: desc,
+        availability: available
       })
       console.log('posted image successfully')
 
@@ -119,6 +122,7 @@ const handleFileChange = (e) => {
       setDesc('');
       setImage(null);
       setPreview(null);
+      setAvailable(true);
       //document.getElementById('fileInput').value = '';
 
     } catch (error) {
@@ -174,6 +178,17 @@ const handleFileChange = (e) => {
                 placeholder="write your description here..."
                 onChange={(e) => setDesc(e.target.value)}
               />
+              <label>Still Available?</label>
+  <div className="flex gap-4 mb-6">
+  <label>
+  <input type="radio" name="stillAvailable" value="true" checked={available === true} onChange={() => setAvailable(true)} />
+  Yes
+</label>
+<label>
+  <input type="radio" name="stillAvailable" value="false" checked={available === false} onChange={() => setAvailable(false)}/>
+  No
+</label>
+</div>
               <button type="submit">
                 Submit
               </button>

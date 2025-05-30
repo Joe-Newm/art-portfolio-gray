@@ -3,8 +3,9 @@ import { ref, update } from "firebase/database";
 import {useState} from 'react';
 
 export default function EditModal({ post, isOpen, setIsOpen }) {
-      const [title, setTitle ] = useState(post.name)
-      const [desc, setDesc ] = useState(post.description)
+      const [title, setTitle ] = useState(post.name);
+      const [desc, setDesc ] = useState(post.description);
+      const [available, setAvailable] = useState(post.availability);
 
   async function onSubmit(e) {
       e.preventDefault();
@@ -12,7 +13,8 @@ export default function EditModal({ post, isOpen, setIsOpen }) {
       try {
         await update(ref(db, 'posts/' + post.id), {
           description: desc,
-          name: title
+          name: title,
+          availability: available
         })
 
         // clear forms
@@ -31,9 +33,24 @@ export default function EditModal({ post, isOpen, setIsOpen }) {
         <form onSubmit={onSubmit} className="flex flex-col items-center">
 
           <label>Art Title</label>
-        <input type="text" name="title" className="border-2  w-full h-10 pl-2 bg-white mb-5"  value={title} onChange={(e) => setTitle(e.target.value)}></input>
+        <input type="text" name="title" className="border-2  w-full h-10 pl-2 bg-white mb-5 rounded-md"  value={title} onChange={(e) => setTitle(e.target.value)}></input>
           <label>Art Description</label>
-        <textarea type="text" name="desc" className="border-2 w-full pl-2 bg-white mb-5 h-76 resize-none" value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
+        <textarea type="text" name="desc" className="border-2 w-full pl-2 bg-white mb-5 h-76 resize-none rounded-md" value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
+
+
+
+              <label>Still Available?</label>
+  <div className="flex gap-4 mb-6">
+  <label>
+  <input type="radio" name="stillAvailable" value={available} checked={available === true} onChange={() => setAvailable(true)} />
+  Yes
+</label>
+<label>
+  <input type="radio" name="stillAvailable" value={available} checked={available === false} onChange={() => setAvailable(false)}/>
+  No
+</label>
+</div>
+
 
         <button type="submit" className="mt-4 px-4 py-2 text-white rounded-md w-40">Submit</button>
         </form>

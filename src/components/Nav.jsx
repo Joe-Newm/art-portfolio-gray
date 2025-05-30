@@ -7,7 +7,7 @@ export default function Nav() {
   return (
     <nav className="align-center items-center">
       <div className="container mx-auto flex justify-between h-full">
-        <div>
+        <div className="pt-1">
           <Link to="/" className="text-[45px] font-serif">Gray Risinger</Link>
         </div>
         <div className="flex gap-6 items-center">

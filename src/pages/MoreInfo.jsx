@@ -10,6 +10,9 @@ export default function MoreInfo() {
       <div>
         <h1>{post.name}</h1>
         <p>{post.description}</p>
+        {post.availability === false ?
+          <h2>Art piece is currently unavailable.</h2>
+        : <h2>Contact for pricing</h2>}
       </div>
     </div>
   )
