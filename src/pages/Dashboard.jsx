@@ -49,17 +49,10 @@ export default function Dashboard() {
 const handleFileChange = (e) => {
   const file = e.target.files[0];
   if (file.size > 5 * 1024 * 1024) {
-<<<<<<< HEAD
-    alert("file is too large! Max file size is 5 mb.")
-    return
-  }
-  setImage(e.target.files[0]);
-=======
     alert('file is too large! Max file size is 5 mb.')
     return
   }
   setImage(file);
->>>>>>> e47ef586dfc9ee0f4da50be5d5c22a63339bad86
 
   if (file) {
     setPreview(URL.createObjectURL(file));
@@ -194,13 +187,9 @@ const aboutHandleFileChange = (e) => {
             message: message,
             imageURL: downloadURL
            })
-<<<<<<< HEAD
 
            alert("updated the About Page Successfully")
    
-=======
-           alert("about page has been updated")
->>>>>>> e47ef586dfc9ee0f4da50be5d5c22a63339bad86
            // clear forms
          } catch (error) {
            console.log("error editing about:", error);
@@ -317,15 +306,21 @@ const aboutHandleFileChange = (e) => {
           <h2 className="text-3xl border-b-2 mb-5">About Page</h2>
 
           <form onSubmit={updateAboutPage} className="flex flex-col">
-
+            <div className="flex flex-col gap-6 md:flex-row mb-10">
+            {aboutPreview && (
+              <div>
+              <label>Current About Page Image</label>
+              <img src={aboutPreview} className=" w-50"/>
+              </div>
+            )}
+            <div className="flex flex-col">
             <label>Upload About Page Image</label>
               <label htmlFor="about-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
                 <UploadFileIcon sx={{ fontSize: 80, color: "white" }} className="mt-6"/>
             </label>
             <input id="about-upload" type="file" className="hidden" onChange={aboutHandleFileChange}/>
-            {aboutPreview && (
-              <img src={aboutPreview} className="mt-4 w-42"/>
-            )}
+            </div>
+            </div>
 
             <label>Heading</label>
             <input id="header" name="header" className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md" value={header} onChange={(e) => setHeader(e.target.value)}></input>
