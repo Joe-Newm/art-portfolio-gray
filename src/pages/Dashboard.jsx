@@ -45,7 +45,11 @@ export default function Dashboard() {
   // display image after upload
 const handleFileChange = (e) => {
   const file = e.target.files[0];
-  setImage(e.target.files[0]);
+  if (file.size > 5 * 1024 * 1024) {
+    alert('file is too large! Max file size is 5 mb.')
+    return
+  }
+  setImage(file);
 
   if (file) {
     setPreview(URL.createObjectURL(file));
@@ -109,6 +113,7 @@ const handleFileChange = (e) => {
     const fileRef = storageRef(storage, `images/${Date.now()}_${image.name}`);
 
     try {
+
       const snapshot = await uploadBytes(fileRef, image);
 
       const downloadURL = await getDownloadURL(snapshot.ref);
@@ -157,7 +162,7 @@ const handleFileChange = (e) => {
             header: header,
             message: message
            })
-   
+           alert("about page has been updated")
            // clear forms
          } catch (error) {
            console.log("error editing about:", error);
