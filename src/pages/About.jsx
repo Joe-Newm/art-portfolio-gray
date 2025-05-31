@@ -14,7 +14,6 @@ export default function About() {
       const aboutRef = ref(db, 'about');
 
       onValue(aboutRef, (snapshot) => {
-        console.log(snapshot.val());
         const data = snapshot.val();
         setHeader(data.header);
         setMessage(data.message);
