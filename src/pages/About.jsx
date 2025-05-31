@@ -1,6 +1,27 @@
 import portrait from "../assets/gray-small.jpg"
+import {useState, useEffect} from 'react';
+import { ref, push, onValue, remove } from "firebase/database";
+import { auth, db, storage } from "../firebaseConfig";
+
 
 export default function About() {
+    const [header, setHeader] = useState('');
+    const [message, setMessage] = useState('');
+
+    //fetch about page info
+    useEffect(() => {
+      const aboutRef = ref(db, 'about');
+
+      onValue(aboutRef, (snapshot) => {
+        console.log(snapshot.val());
+        const data = snapshot.val();
+        setHeader(data.header);
+        setMessage(data.message);
+      }, (errorObject) => {
+        console.log('The read failed: ' + errorObject.name);
+      }); 
+  
+    }, []);
 
 
   return (
@@ -12,12 +33,8 @@ export default function About() {
         <img src={portrait} alt="portrait of Gray Risinger" className="w-60"></img>
         
       <div>
-        <h2 className="mb-6">Hi, I'm Gray Risinger</h2>
-        <p>I'm a local artist from West Monroe, Louisiana. I create scenic and abstract paintings inspired by the landscapes and atmosphere of my home in Northeast Louisiana.
-
-My work ranges from calm, detailed views of nature to bold, expressive abstract pieces. Whether I’m capturing a peaceful lakeside morning or experimenting with color and texture, each painting reflects both the world around me and the emotions behind it.
-
-Thank you for visiting — feel free to reach out if you're interested in a piece, have a question, or just want to connect.</p>
+        <h2 className="mb-6">{header}</h2>
+        <p>{message}</p>
       </div>
 
       </div>

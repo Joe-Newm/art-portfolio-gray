@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import { auth, db, storage } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ref, push, onValue, remove } from "firebase/database";
+import { ref, push, onValue, remove, update } from "firebase/database";
 import { deleteObject, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -22,6 +22,10 @@ export default function Dashboard() {
   const [preview, setPreview] = useState(null);
   const [activeTab, setActiveTab] = useState('tab1')
   const navigate = useNavigate();
+
+  // about page info
+  const [header, setHeader] = useState('');
+  const [message, setMessage] = useState('');
 
   const signout = async () => {
     try {
@@ -131,6 +135,35 @@ const handleFileChange = (e) => {
     }
   }
 
+  // fetch about page
+  useEffect(() => {
+    const aboutRef = ref(db, 'about');
+
+    onValue(aboutRef, (screenshot) => {
+      const aboutData = screenshot.val();
+      setHeader(aboutData.header);
+      setMessage(aboutData.message);
+    }, (errorObject) => {
+        console.log('The read failed: ' + errorObject.name);
+      }); 
+  }, []);
+
+  // update about page
+  const updateAboutPage = async (e) => {
+    e.preventDefault();
+
+         try {
+           await update(ref(db, 'about/'), {
+            header: header,
+            message: message
+           })
+   
+           // clear forms
+         } catch (error) {
+           console.log("error editing about:", error);
+         } 
+  }
+
   return (
     <div className="container mx-auto pl-4 pr-4">
       <div className="flex flex-col container mx-auto mt-10 justify-center items-center ">
@@ -204,7 +237,7 @@ const handleFileChange = (e) => {
   No
 </label>
 </div>
-              <button type="submit">
+              <button type="submit" className="w-30">
                 Submit
               </button>
             </div>
@@ -237,11 +270,13 @@ const handleFileChange = (e) => {
       <div className="container mx-auto max-w-200 mt-10 mb-20">
           <h2 className="text-3xl border-b-2 mb-5">About Page</h2>
 
-          <form className="flex flex-col">
+          <form onSubmit={updateAboutPage} className="flex flex-col">
             <label>Heading</label>
-            <input className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md"></input>
+            <input id="header" name="header" className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md" value={header} onChange={(e) => setHeader(e.target.value)}></input>
             <label>Message</label>
-            <textarea className="border-2 w-full h-60 p-4 bg-white mb-5 rounded-md resize-none"></textarea>
+            <textarea className="border-2 w-full h-60 p-4 bg-white mb-5 rounded-md resize-none" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+
+            <button type="submit" className="w-30">Update</button>
           </form>
       </div>
       )}
