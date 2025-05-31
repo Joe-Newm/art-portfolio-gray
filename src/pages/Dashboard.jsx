@@ -49,10 +49,17 @@ export default function Dashboard() {
 const handleFileChange = (e) => {
   const file = e.target.files[0];
   if (file.size > 5 * 1024 * 1024) {
+<<<<<<< HEAD
     alert("file is too large! Max file size is 5 mb.")
     return
   }
   setImage(e.target.files[0]);
+=======
+    alert('file is too large! Max file size is 5 mb.')
+    return
+  }
+  setImage(file);
+>>>>>>> e47ef586dfc9ee0f4da50be5d5c22a63339bad86
 
   if (file) {
     setPreview(URL.createObjectURL(file));
@@ -130,6 +137,7 @@ const aboutHandleFileChange = (e) => {
     const fileRef = storageRef(storage, `images/${Date.now()}_${image.name}`);
 
     try {
+
       const snapshot = await uploadBytes(fileRef, image);
 
       const downloadURL = await getDownloadURL(snapshot.ref);
@@ -186,9 +194,13 @@ const aboutHandleFileChange = (e) => {
             message: message,
             imageURL: downloadURL
            })
+<<<<<<< HEAD
 
            alert("updated the About Page Successfully")
    
+=======
+           alert("about page has been updated")
+>>>>>>> e47ef586dfc9ee0f4da50be5d5c22a63339bad86
            // clear forms
          } catch (error) {
            console.log("error editing about:", error);
