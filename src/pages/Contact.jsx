@@ -36,7 +36,7 @@ export default function Contact() {
           <input type="email" name="email" className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md" required></input>
 
           <label>Message</label>
-          <textarea name="message" required className="border-2 w-full h-40 p-4 bg-white mb-5 rounded-md"></textarea>
+          <textarea name="message" required className="border-2 w-full h-40 p-4 bg-white mb-5 rounded-md resize-none"></textarea>
 
           <input type="checkbox" name="botcheck" className="hidden" style={{display: "none"}}></input>
 
