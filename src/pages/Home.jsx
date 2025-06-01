@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [homeImage, setHomeImage] = useState(null);
 
 
 
@@ -29,9 +30,22 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
+
+  useEffect(() => {
+    const homeRef = ref(db, 'home');
+
+    onValue(homeRef, (screenshot) => {
+      const homeData = screenshot.val();
+      setHomeImage(homeData.imageURL);
+    }, (errorObject) => {
+      console.log('The read failed: ' + errorObject.name);
+    })
+    
+  }, []);
+
   return (
     <>
-      <img src={headerImage} className="headerImage" loading="lazy"/>
+      <img src={homeImage} className="headerImage" loading="lazy"/>
       <div className="container mx-auto mt-10 pl-4 pr-4">
         <h1 className="mb-10 text-center border-b-2"> Work </h1>
         <div className="mosaic-container columns-1 sm:columns-2 md:columns-3 gap-4 mb-10">

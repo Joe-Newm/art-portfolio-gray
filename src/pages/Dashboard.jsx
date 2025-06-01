@@ -70,7 +70,7 @@ const aboutHandleFileChange = (e) => {
     alert("file is too large! Max file size is 5 mb.") 
     return
   }
-  setAboutImage(e.target.files[0])
+  setAboutImage(file)
 
   if (file) {
     setAboutPreview(URL.createObjectURL(file));
@@ -85,7 +85,7 @@ const homeHandleFileChange = (e) => {
     alert("file is too large! Max file size is 5 mb.") 
     return
   }
-  setHomeImage(e.target.files[0])
+  setHomeImage(file)
 
   if (file) {
     setHomePreview(URL.createObjectURL(file));
@@ -189,6 +189,19 @@ const homeHandleFileChange = (e) => {
       }); 
   }, []);
 
+  //fetch home page
+  useEffect(() => {
+    const homeRef = ref(db, 'home');
+
+    onValue(homeRef, (screenshot) => {
+      const homeData = screenshot.val();
+      setHomePreview(homeData.imageURL);
+      setHomeImage(homeData.imageURL);
+    }, (errorObject) => {
+      console.log('The read failed: ' + errorObject.name);
+    })
+  }, []);
+
   // update about page
   const updateAboutPage = async (e) => {
     e.preventDefault();
@@ -212,7 +225,7 @@ const homeHandleFileChange = (e) => {
             })
           }
 
-           alert("updated the About Page Successfully")
+           alert("Updated the About Page Successfully")
    
            // clear forms
          } catch (error) {
@@ -222,8 +235,23 @@ const homeHandleFileChange = (e) => {
 
   //update home page image
   const updateHomePage = async (e) => {
-    console.log("update");
+    e.preventDefault();
+
+    const fileRef = storageRef(storage, `website-images/homePageImage`);
+
+      try {
+          const snapshot = await uploadBytes(fileRef, homeImage);
+          const downloadURL = await getDownloadURL(snapshot.ref);
+
+          await update(ref(db, 'home/'), {
+            imageURL: downloadURL
+          })
+          alert("Updated the Home page Image Successfully")
+      } catch (error) {
+        console.log("error editing home page image:", error);
+      }
   }
+
 
 
   return (
@@ -361,23 +389,25 @@ const homeHandleFileChange = (e) => {
 
           {/* Home Page Update */}
           <h2 className="text-3xl border-b-2 mb-5 mt-20">Home Page</h2>
-          <form onSubmit={updateHomePage} class="flex">
+          <form onSubmit={updateHomePage} className="flex flex-col">
 
             <div className="flex flex-col gap-6 md:flex-row mb-10">
             {homePreview && (
               <div>
               <label>Current Home Page Image</label>
-              <img src={homePreview} className="min-w-50 max-w-150 max-h-100"/>
+              <img src={homePreview} className=" max-w-96"/>
               </div>
             )}
             <div className="flex flex-col">
             <label>Upload Home Page Image</label>
-              <label htmlFor="about-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
+              <label htmlFor="home-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
                 <UploadFileIcon sx={{ fontSize: 80, color: "white" }} className="mt-6"/>
             </label>
-            <input id="about-upload" type="file" className="hidden" onChange={homeHandleFileChange}/>
+            <input id="home-upload" type="file" className="hidden" onChange={homeHandleFileChange}/>
             </div>
             </div>
+
+            <button type="submit" className="w-30">Update</button>
           </form>
       </div>
       )}
