@@ -6,6 +6,7 @@ import ArtPosts from "../components/dashboard-components/ArtPosts"
 import AboutSettings from "../components/dashboard-components/AboutSettings"
 import HomeSettings from "../components/dashboard-components/HomeSettings"
 import ContactSettings from "../components/dashboard-components/ContactSettings"
+import WebsiteSettings from "../components/dashboard-components/WebsiteSettings"
 
 export default function Dashboard() {
   
@@ -28,7 +29,8 @@ export default function Dashboard() {
     tab1: <ArtPosts />,
     tab2: <AboutSettings />,
     tab3: <HomeSettings />,
-    tab4: <ContactSettings />
+    tab4: <ContactSettings />,
+    tab5: <WebsiteSettings />
   }
 
 
@@ -56,6 +58,10 @@ export default function Dashboard() {
             <a className={(activeTab === 'tab4' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center text-sm` : `text-sm select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
              onClick={() => setActiveTab('tab4')}
             >Contact Page Settings</a>
+
+            <a className={(activeTab === 'tab5' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center text-sm` : `text-sm select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
+             onClick={() => setActiveTab('tab5')}
+            >Website Settings</a>
 
           </div>
         </div>
