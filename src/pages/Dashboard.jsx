@@ -30,6 +30,10 @@ export default function Dashboard() {
   const [aboutImage, setAboutImage] = useState(null);
   const [aboutPreview, setAboutPreview] = useState(null);
 
+  // home page info
+  const [homeImage, setHomeImage] = useState(null);
+  const [homePreview, setHomePreview] = useState(null);
+
   const signout = async () => {
     try {
       signOut(auth);
@@ -74,6 +78,19 @@ const aboutHandleFileChange = (e) => {
 }
 
 
+// set home page image and display after upload
+const homeHandleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file.size > 5 * 1024 * 1024) {
+    alert("file is too large! Max file size is 5 mb.") 
+    return
+  }
+  setHomeImage(e.target.files[0])
+
+  if (file) {
+    setHomePreview(URL.createObjectURL(file));
+  }
+}
 
   //fetch images from database
   useEffect(() => {
@@ -196,7 +213,10 @@ const aboutHandleFileChange = (e) => {
          } 
   }
 
-  //update about page image
+  //update home page image
+  const updateHomePage = async (e) => {
+    console.log("update");
+  }
 
 
   return (
@@ -329,6 +349,28 @@ const aboutHandleFileChange = (e) => {
             <textarea className="border-2 w-full h-60 p-4 bg-white mb-5 rounded-md resize-none" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
 
             <button type="submit" className="w-30">Update</button>
+          </form>
+
+
+          {/* Home Page Update */}
+          <h2 className="text-3xl border-b-2 mb-5 mt-20">Home Page</h2>
+          <form onSubmit={updateHomePage} class="flex">
+
+            <div className="flex flex-col gap-6 md:flex-row mb-10">
+            {homePreview && (
+              <div>
+              <label>Current Home Page Image</label>
+              <img src={homePreview} className="min-w-50 max-w-150 max-h-100"/>
+              </div>
+            )}
+            <div className="flex flex-col">
+            <label>Upload Home Page Image</label>
+              <label htmlFor="about-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
+                <UploadFileIcon sx={{ fontSize: 80, color: "white" }} className="mt-6"/>
+            </label>
+            <input id="about-upload" type="file" className="hidden" onChange={homeHandleFileChange}/>
+            </div>
+            </div>
           </form>
       </div>
       )}
