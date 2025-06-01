@@ -41,19 +41,19 @@ export default function Dashboard() {
         <div className="h-20 bg-[#06373a] w-lvw mb-10">
           <div className="container mx-auto max-w-200 h-full flex gap-4">
 
-            <a className={(activeTab === 'tab1' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
+            <a className={(activeTab === 'tab1' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center text-sm` : `text-sm select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
              onClick={() => setActiveTab('tab1')}
             >Art Post Settings</a>
 
-            <a className={(activeTab === 'tab2' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
+            <a className={(activeTab === 'tab2' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center text-sm` : `text-sm select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
              onClick={() => setActiveTab('tab2')}
             >About Page Settings</a>
 
-            <a className={(activeTab === 'tab3' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
+            <a className={(activeTab === 'tab3' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center text-sm` : `text-sm select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
              onClick={() => setActiveTab('tab3')}
             >Home Page Settings</a>
 
-            <a className={(activeTab === 'tab4' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
+            <a className={(activeTab === 'tab4' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center text-sm` : `text-sm select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
              onClick={() => setActiveTab('tab4')}
             >Contact Page Settings</a>
 
