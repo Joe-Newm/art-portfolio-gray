@@ -22,10 +22,6 @@ export default function AboutSettings() {
   const [aboutImage, setAboutImage] = useState(null);
   const [aboutPreview, setAboutPreview] = useState(null);
 
-  // home page info
-  const [homeImage, setHomeImage] = useState(null);
-  const [homePreview, setHomePreview] = useState(null);
-
 
 
 // set about page image and display after upload
@@ -41,22 +37,6 @@ const aboutHandleFileChange = (e) => {
     setAboutPreview(URL.createObjectURL(file));
   }
 }
-
-
-// set home page image and display after upload
-const homeHandleFileChange = (e) => {
-  const file = e.target.files[0];
-  if (file.size > 5 * 1024 * 1024) {
-    alert("file is too large! Max file size is 5 mb.") 
-    return
-  }
-  setHomeImage(file)
-
-  if (file) {
-    setHomePreview(URL.createObjectURL(file));
-  }
-}
-
 
   
 
@@ -75,18 +55,6 @@ const homeHandleFileChange = (e) => {
       }); 
   }, []);
 
-  //fetch home page
-  useEffect(() => {
-    const homeRef = ref(db, 'home');
-
-    onValue(homeRef, (screenshot) => {
-      const homeData = screenshot.val();
-      setHomePreview(homeData.imageURL);
-      setHomeImage(homeData.imageURL);
-    }, (errorObject) => {
-      console.log('The read failed: ' + errorObject.name);
-    })
-  }, []);
 
   // update about page
   const updateAboutPage = async (e) => {
@@ -119,24 +87,6 @@ const homeHandleFileChange = (e) => {
          } 
   }
 
-  //update home page image
-  const updateHomePage = async (e) => {
-    e.preventDefault();
-
-    const fileRef = storageRef(storage, `website-images/homePageImage`);
-
-      try {
-          const snapshot = await uploadBytes(fileRef, homeImage);
-          const downloadURL = await getDownloadURL(snapshot.ref);
-
-          await update(ref(db, 'home/'), {
-            imageURL: downloadURL
-          })
-          alert("Updated the Home page Image Successfully")
-      } catch (error) {
-        console.log("error editing home page image:", error);
-      }
-  }
 
 
 
@@ -155,8 +105,9 @@ const homeHandleFileChange = (e) => {
             )}
             <div className="flex flex-col">
             <label>Upload About Page Image</label>
-              <label htmlFor="about-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
-                <UploadFileIcon sx={{ fontSize: 80, color: "white" }} className="mt-6"/>
+              <label htmlFor="about-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-20 border-2 text-center">
+                <UploadFileIcon sx={{ fontSize: 40, color: "white" }} className=""/>
+                <p className="text-white">Upload Image</p>
             </label>
             <input id="about-upload" type="file" className="hidden" onChange={aboutHandleFileChange}/>
             </div>
@@ -167,30 +118,6 @@ const homeHandleFileChange = (e) => {
 
             <label>Message</label>
             <textarea className="border-2 w-full h-60 p-4 bg-white mb-5 rounded-md resize-none" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
-
-            <button type="submit" className="w-30">Update</button>
-          </form>
-
-
-          {/* Home Page Update */}
-          <h2 className="text-3xl border-b-2 mb-5 mt-20">Home Page</h2>
-          <form onSubmit={updateHomePage} className="flex flex-col">
-
-            <div className="flex flex-col gap-6 md:flex-row mb-10">
-            {homePreview && (
-              <div>
-              <label>Current Home Page Image</label>
-              <img src={homePreview} className=" max-w-96"/>
-              </div>
-            )}
-            <div className="flex flex-col">
-            <label>Upload Home Page Image</label>
-              <label htmlFor="home-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
-                <UploadFileIcon sx={{ fontSize: 80, color: "white" }} className="mt-6"/>
-            </label>
-            <input id="home-upload" type="file" className="hidden" onChange={homeHandleFileChange}/>
-            </div>
-            </div>
 
             <button type="submit" className="w-30">Update</button>
           </form>

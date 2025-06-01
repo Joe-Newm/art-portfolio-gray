@@ -134,9 +134,10 @@ const submitPost = async (e) => {
           <form onSubmit={submitPost} className="flex gap-10 flex-col md:flex-row">
             <div className="relative flex flex-col">
             <label>Upload Art</label>
-          <label htmlFor="file-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-42 border-2 text-center">
-            <UploadFileIcon sx={{ fontSize: 80, color: "white" }} className="mt-6"/>
-        </label>
+              <label htmlFor="file-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-20 border-2 text-center">
+                <UploadFileIcon sx={{ fontSize: 40, color: "white" }} className=""/>
+                <p className="text-white">Upload Image</p>
+            </label>
 
         <input id="file-upload" type="file" className="hidden" required onChange={handleFileChange}/>
 

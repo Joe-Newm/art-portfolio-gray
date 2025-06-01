@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ArtPosts from "../components/dashboard-components/ArtPosts"
 import AboutSettings from "../components/dashboard-components/AboutSettings"
+import HomeSettings from "../components/dashboard-components/HomeSettings"
+import ContactSettings from "../components/dashboard-components/ContactSettings"
 
 export default function Dashboard() {
   
@@ -24,7 +26,9 @@ export default function Dashboard() {
   // tab pages
   const tabComponents = {
     tab1: <ArtPosts />,
-    tab2: <AboutSettings />
+    tab2: <AboutSettings />,
+    tab3: <HomeSettings />,
+    tab4: <ContactSettings />
   }
 
 
@@ -35,15 +39,23 @@ export default function Dashboard() {
         <h2 className="text-3xl   text-center">you are now logged in</h2>
         <button onClick={signout} className="mt-10 mb-10"> sign out </button>
         <div className="h-20 bg-[#06373a] w-lvw mb-10">
-          <div className="container mx-auto max-w-200 h-full flex">
+          <div className="container mx-auto max-w-200 h-full flex gap-4">
 
-            <a className={(activeTab === 'tab1' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer` : `select-none w-24 h-full font-bold flex justify-center items-center text-white border-l-2 border-[#fff5df] text-center cursor-pointer`)}
+            <a className={(activeTab === 'tab1' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
              onClick={() => setActiveTab('tab1')}
-            >Art Posts</a>
+            >Art Post Settings</a>
 
-            <a className={(activeTab === 'tab2' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white border-r-2 border-[#fff5df] text-center cursor-pointer`)}
+            <a className={(activeTab === 'tab2' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
              onClick={() => setActiveTab('tab2')}
-            >Website Settings</a>
+            >About Page Settings</a>
+
+            <a className={(activeTab === 'tab3' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
+             onClick={() => setActiveTab('tab3')}
+            >Home Page Settings</a>
+
+            <a className={(activeTab === 'tab4' ? `select-none bg-[#fff5df] border-t-2 w-24 h-full font-bold flex justify-center items-center cursor-pointer text-center` : `select-none w-24 h-full font-bold flex justify-center items-center text-white bg-emerald-800 border-[#fff5df] text-center cursor-pointer`)}
+             onClick={() => setActiveTab('tab4')}
+            >Contact Page Settings</a>
 
           </div>
         </div>
