@@ -183,6 +183,7 @@ const homeHandleFileChange = (e) => {
       setHeader(aboutData.header);
       setMessage(aboutData.message);
       setAboutPreview(aboutData.imageURL);
+      setAboutImage(aboutData.imageURL);
     }, (errorObject) => {
         console.log('The read failed: ' + errorObject.name);
       }); 
@@ -194,8 +195,8 @@ const homeHandleFileChange = (e) => {
 
     const fileRef = storageRef(storage, `website-images/aboutPageImage`);
 
-
          try {
+          if (aboutImage != aboutPreview) {
             const snapshot = await uploadBytes(fileRef, aboutImage);
             const downloadURL = await getDownloadURL(snapshot.ref);
 
@@ -204,6 +205,12 @@ const homeHandleFileChange = (e) => {
             message: message,
             imageURL: downloadURL
            })
+          } else {
+            await update(ref(db, 'about/'), {
+              header: header,
+              message: message
+            })
+          }
 
            alert("updated the About Page Successfully")
    
