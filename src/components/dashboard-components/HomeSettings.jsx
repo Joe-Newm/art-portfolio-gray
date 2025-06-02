@@ -83,7 +83,7 @@ const homeHandleFileChange = (e) => {
             )}
             <div className="flex flex-col">
             <label>Upload Home Page Image</label>
-              <label htmlFor="home-upload" className="cursor-pointer inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 w-42 h-20 border-2 text-center">
+              <label htmlFor="home-upload" className="upload-button">
                 <UploadFileIcon sx={{ fontSize: 40, color: "white" }} className=""/>
                 <p className="text-white">Upload Image</p>
             </label>

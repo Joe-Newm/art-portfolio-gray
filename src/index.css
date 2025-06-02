@@ -80,6 +80,10 @@ h1 {
   color: #06373a;
 }
 
+.upload-button {
+  @apply flex cursor-pointer  px-4  bg-cyan-500 rounded hover:bg-cyan-600 w-50 h-16 border-2 text-center items-center border-cyan-600 hover:border-cyan-700;
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
