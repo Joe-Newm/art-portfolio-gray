@@ -39,7 +39,7 @@ export default function Dashboard() {
       <div className="flex flex-col container mx-auto mt-10 justify-center items-center ">
         <h1 className="mt-6">Dashboard </h1>
         <h2 className="text-3xl   text-center">you are now logged in</h2>
-        <button onClick={signout} className="mt-10 mb-10"> sign out </button>
+        <button onClick={signout} className="mt-10 mb-10 btn2"> sign out </button>
         <div className="h-20 bg-[#06373a] w-lvw mb-10">
           <div className="container mx-auto max-w-200 h-full flex gap-4">
 

@@ -91,7 +91,7 @@ const homeHandleFileChange = (e) => {
             </div>
             </div>
 
-            <button type="submit" className="w-30">Update</button>
+            <button type="submit" className="w-30 btn2">Update</button>
           </form>
           </div>
     )

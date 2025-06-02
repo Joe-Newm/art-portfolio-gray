@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 :root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   line-height: 1.5;
@@ -63,25 +65,16 @@ h1 {
 }
 
 .btn {
-  @apply bg-white p-3 rounded-md !text-[#06373a] hover:bg-transparent hover:!text-white hover:outline-1 hover:outline-white font-bold;
+  @apply bg-white p-3 rounded-md !text-[#06373a] hover:!bg-transparent hover:!text-white hover:!outline-1 hover:outline-white font-bold;
 }
 
-button {
-  border-radius: 8px;
-  border: 2px solid transparent;
-  padding: 0.6em 1.5em;
-  font-size: 1em;
-  font-weight: 600;
-  font-family: inherit;
-  background-color: #06373a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: #fff5df;
+.btn2 {
+  @apply bg-[#06373a] p-3 rounded-md text-[white] hover:bg-transparent hover:text-[#06373a] hover:outline-2 hover:outline-[#06373a] font-bold;
 }
 
-button:hover {
+
+.btn:hover {
   border-color: #06373a;
-  border: solid 2px;
   background-color: #fff5df;
   box-sizing: border-box;
   color: #06373a;

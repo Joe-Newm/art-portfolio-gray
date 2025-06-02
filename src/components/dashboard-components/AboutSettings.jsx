@@ -119,7 +119,7 @@ const aboutHandleFileChange = (e) => {
             <label>Message</label>
             <textarea className="border-2 w-full h-60 p-4 bg-white mb-5 rounded-md resize-none" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
 
-            <button type="submit" className="w-30">Update</button>
+            <button type="submit" className="w-30 btn2">Update</button>
           </form>
       </div>
       

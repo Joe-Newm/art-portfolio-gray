@@ -62,7 +62,7 @@ export default function ContactSettings() {
                 placeholder=""
                 onChange={(e) => setApiKey(e.target.value)}
               />
-              <button type="submit">Submit</button>
+              <button className="btn2" type="submit">Submit</button>
             </form>
           </div>
     )

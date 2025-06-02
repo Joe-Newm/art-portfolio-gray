@@ -30,7 +30,7 @@ export default function Footer() {
     <footer className="bg-[#06373a] h-32 bottom-0 flex flex-col items-center justify-center pb-6 pt-4">
       <Link to="/" className="text-[45px] font-serif text-white">{name}</Link>
       <div className="flex gap-4">
-      <a target="_blank" href={instaLink}><InstagramIcon sx={{fontSize: 34 ,color: "white"}} /></a>
+      <a target="_blank"rel="noopener noreferrer" href={instaLink}><InstagramIcon sx={{fontSize: 34 ,color: "white"}} /></a>
       <a href="contact"><MailOutlineIcon sx={{fontSize: 34 ,color: "white"}} /></a>
       </div>
     </footer>

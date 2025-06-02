@@ -40,7 +40,7 @@ export default function Contact() {
 
           <input type="checkbox" name="botcheck" className="hidden" style={{display: "none"}}></input>
 
-          <button type="submit" className="w-30">Submit</button>
+          <button type="submit" className="w-30 btn2">Submit</button>
 
         </form>
 

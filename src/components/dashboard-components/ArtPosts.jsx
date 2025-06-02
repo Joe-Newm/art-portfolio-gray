@@ -178,7 +178,7 @@ const submitPost = async (e) => {
   No
 </label>
 </div>
-              <button type="submit" className="w-30">
+              <button type="submit" className="w-30 btn2">
                 Submit
               </button>
             </div>
@@ -190,8 +190,8 @@ const submitPost = async (e) => {
                 <div key={post.id} className="bg-white shadow-lg border-gray-200 border-1 mb-4 p-4 rounded-md">
                   <img src={post.imageURL} alt="painting" className="mosaic-item h-60 object-cover w-full" />
                   <div className="flex gap-4">
-                    <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4 !w-10 justify-center">< DeleteIcon /></button>
-                    <button className="flex mt-4 !w-10 justify-center" onClick={() => Popup(post)}><EditIcon /></button>
+                    <button onClick={() => onDelete(post.id, post.imageURL)} className="flex mt-4   justify-center btn2">< DeleteIcon /></button>
+                    <button className="flex mt-4  justify-center btn2" onClick={() => Popup(post)}><EditIcon /></button>
                   </div>
                 </div>
               ))}

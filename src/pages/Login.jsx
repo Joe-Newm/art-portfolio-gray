@@ -62,7 +62,7 @@ export default function Login() {
           {error && <p className="text-red-500">{error}</p>}
 
           <div>
-            <button type='submit'>
+            <button className="btn2"type='submit'>
               Submit
             </button>
           </div>

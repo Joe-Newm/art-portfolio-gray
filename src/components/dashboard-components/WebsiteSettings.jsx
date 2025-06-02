@@ -70,7 +70,7 @@ export default function WebsiteSettings() {
                 placeholder=""
                 onChange={(e) => setName(e.target.value)}
               />
-              <button type="submit">Submit</button>
+              <button className="btn2" type="submit">Submit</button>
             </form>
 
             <form className="mt-10" onSubmit={updateWebsiteInsta}>
@@ -86,7 +86,7 @@ export default function WebsiteSettings() {
                 placeholder=""
                 onChange={(e) => setInstaLink(e.target.value)}
               />
-              <button type="submit">Submit</button>
+              <button className="btn2" type="submit">Submit</button>
             </form>
           </div>
     )
