@@ -51,9 +51,9 @@ export default function Dashboard() {
 
 
   return (
-    <div className="  md:pr-0 dashboard-page flex flex-row w-lvw">
-      <div className="bg-white md:w-1/5 h-100% hidden md:block border-2 border-gray-200">
-          <div className=" h-full flex flex-col w-full   mt-4">
+    <div className="  md:pr-0 dashboard-page flex flex-row w-lvw h-screen">
+      <div className="bg-white md:w-1/5 h-full hidden md:block border-2 border-gray-200">
+          <div className=" h-full flex flex-col   mt-4">
 
             <a className={(activeTab === 'tab1' ? `left-nav-tab-selected` : `left-nav-tab`)}
              onClick={() => setActiveTab('tab1')}
@@ -77,14 +77,14 @@ export default function Dashboard() {
 
           </div>
       </div>
-      <div className="flex flex-col justify-center items-center w-full md:w-4/5 ">
+      <div className="flex flex-col overflow-hidden flex-grow w-full md:w-4/5 h-full">
       <div className="bg-gray-300 w-full flex flex-col items-center">
         <h1 className="mt-6">Dashboard</h1>
         <h2 className="text-3xl text-center">you are now logged in</h2>
         <button onClick={signout} className="mt-10 mb-10 btn2"> sign out </button>
       </div>
-        <div className="h-20 bg-gray-300 w-full mb-10">
-          <div className="container mx-auto max-w-200 h-full flex gap-2 font-size !text-xs">
+        <div className="h-20 bg-gray-300 w-full mb-10 shrink-0">
+          <div className="container mx-auto max-w-200 h-full flex gap-2 font-size !text-xs flex-grow">
 
             <a className={(activeTab === 'tab1' ? `tab-selected` : `tab`)}
              onClick={() => setActiveTab('tab1')}
@@ -108,7 +108,7 @@ export default function Dashboard() {
 
           </div>
         </div>
-        <div className="w-full pl-4 pr-4">
+        <div className="w-full pl-4 pr-4 flex-1 overflow-y-auto">
       {tabComponents[activeTab]}
         </div>
       </div>
