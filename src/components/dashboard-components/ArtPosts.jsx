@@ -132,11 +132,25 @@ const submitPost = async (e) => {
 
 
           <form onSubmit={submitPost} className="flex gap-10 flex-col md:flex-row">
+
+            <div className="relative flex flex-col">
+            <label>Upload Art</label>
+              <label htmlFor="file-upload" className="upload-button ">
+                <UploadFileIcon sx={{ fontSize: 40, color: "white" }} className=""/>
+                <p className="text-white">Upload Image</p>
+            </label>
+
+        <input id="file-upload" type="file" className="hidden" required onChange={handleFileChange}/>
+
+        {preview && (
+          <img src={preview} className="mt-4 w-42"/>
+        )}
+      </div>
             <div>
               <label htmlFor="title">Art Title</label>
               <input
                 id="title"
-                className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md"
+                className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md border-gray-400"
                 name="title"
                 type="text"
                 value={title}
@@ -170,22 +184,9 @@ const submitPost = async (e) => {
                 Submit
               </button>
             </div>
-            <div className="relative flex flex-col">
-            <label>Upload Art</label>
-              <label htmlFor="file-upload" className="upload-button ">
-                <UploadFileIcon sx={{ fontSize: 40, color: "white" }} className=""/>
-                <p className="text-white">Upload Image</p>
-            </label>
-
-        <input id="file-upload" type="file" className="hidden" required onChange={handleFileChange}/>
-
-        {preview && (
-          <img src={preview} className="mt-4 w-42"/>
-        )}
-      </div>
           </form>
           <div className="container mx-auto mt-10">
-            <h2 className="text-3xl border-b-2 mb-5 mt-20 mb-10 text-center"> Work </h2>
+            <h2 className="text-3xl border-b-2 mb-5 mt-20 mb-10 "> Work </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
               {posts.map((post) => (
                 <div key={post.id} className="bg-white shadow-lg border-gray-200 border-1 mb-4 p-4 rounded-md">
