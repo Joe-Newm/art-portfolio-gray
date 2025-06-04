@@ -12,7 +12,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 export default function ContactSettings() { 
   // home page info
-  const [apiKey, setApiKey] = useState(null);
+  const [apiKey, setApiKey] = useState("");
 
 
 

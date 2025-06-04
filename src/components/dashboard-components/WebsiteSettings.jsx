@@ -8,8 +8,8 @@ import { deleteObject, ref as storageRef, uploadBytes, getDownloadURL } from "fi
 export default function WebsiteSettings() { 
 
   // website info
-  const [name, setName] = useState(null);
-  const [instaLink, setInstaLink] = useState(null);
+  const [name, setName] = useState("");
+  const [instaLink, setInstaLink] = useState("");
 
   //fetch contact page info
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function WebsiteSettings() {
                 name="name"
                 type="text"
                 value={name}
-                maxlength="40" 
+                maxLength="40" 
                 required
                 placeholder=""
                 onChange={(e) => setName(e.target.value)}
@@ -81,7 +81,7 @@ export default function WebsiteSettings() {
                 name="name"
                 type="text"
                 value={instaLink}
-                maxlength="40" 
+                maxLength="40" 
                 required
                 placeholder=""
                 onChange={(e) => setInstaLink(e.target.value)}

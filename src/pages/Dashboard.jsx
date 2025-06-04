@@ -6,7 +6,8 @@ import ArtPosts from "../components/dashboard-components/ArtPosts"
 import AboutSettings from "../components/dashboard-components/AboutSettings"
 import HomeSettings from "../components/dashboard-components/HomeSettings"
 import ContactSettings from "../components/dashboard-components/ContactSettings"
-import WebsiteSettings from "../components/dashboard-components/WebsiteSettings"
+import WebsiteSettings from "../components/dashboard-components/WebsiteSettings";
+import Tabs from "../components/Tabs";
 
 //css file
 import './dashboard.css';
@@ -14,6 +15,7 @@ import './dashboard.css';
 export default function Dashboard() {
   
   const [activeTab, setActiveTab] = useState('tab1')
+  const [activeSection, setActiveSection] = useState('art')
   const navigate = useNavigate();
 
 
@@ -49,67 +51,83 @@ export default function Dashboard() {
     tab5: <WebsiteSettings />
   }
 
+  //tabs
+const sectionTabs = {
+  art: [
+    { id: 'tab1', label: 'New Post', page: <ArtPosts />,},
+    { id: 'tab2', label: 'Artwork', page: <ArtPosts />},
+  ],
+  about: [
+    { id: 'tab1', label: 'Image', page: <AboutSettings /> },
+    { id: 'tab2', label: 'Content', page: <AboutSettings />},
+  ],
+  home: [
+    { id: 'tab1', label: 'Home Page Settings', page: <HomeSettings />},
+  ],
+  contact: [
+    { id: 'tab1', label: 'Contact Page Settings', page: <ContactSettings />},
+  ],
+  website: [
+    { id: 'tab1', label: 'Website Name', page: <WebsiteSettings /> },
+    { id: 'tab2', label: 'Socials', page: <WebsiteSettings /> }
+  ]
+};
+
+
+
+
 
   return (
-    <div className="  md:pr-0 dashboard-page flex flex-row w-lvw h-screen">
+    <div className="  md:pr-0 dashboard-page flex flex-row w-full h-screen">
       <div className="bg-white md:w-1/5 h-full hidden md:block border-2 border-gray-200">
           <div className=" h-full flex flex-col   mt-4">
 
-            <a className={(activeTab === 'tab1' ? `left-nav-tab-selected` : `left-nav-tab`)}
-             onClick={() => setActiveTab('tab1')}
-            >Art Post Settings</a>
+            <a className={(activeSection === 'art' ? `left-nav-tab-selected` : `left-nav-tab`)}
+             onClick={() => {
+              setActiveSection('art');
+              setActiveTab('tab1');
+             }}
+            >Art Posts</a>
 
-            <a className={(activeTab === 'tab2' ? `left-nav-tab-selected` : `left-nav-tab`)}
-             onClick={() => setActiveTab('tab2')}
-            >About Page Settings</a>
+            <a className={(activeSection === 'about' ? `left-nav-tab-selected` : `left-nav-tab`)}
+             onClick={() => {
+              setActiveSection('about');
+              setActiveTab('tab1');
+             }}
+            >About Page</a>
 
-            <a className={(activeTab === 'tab3' ? `left-nav-tab-selected` : `left-nav-tab`)}
-             onClick={() => setActiveTab('tab3')}
-            >Home Page Settings</a>
+            <a className={(activeSection === 'home' ? `left-nav-tab-selected` : `left-nav-tab`)}
+             onClick={() => {
+              setActiveSection('home');
+              setActiveTab('tab1');
+             }}
+            >Home Page</a>
 
-            <a className={(activeTab === 'tab4' ? `left-nav-tab-selected` : `left-nav-tab`)}
-             onClick={() => setActiveTab('tab4')}
-            >Contact Page Settings</a>
+            <a className={(activeSection === 'contact' ? `left-nav-tab-selected` : `left-nav-tab`)}
+             onClick={() => {
+              setActiveSection('contact');
+              setActiveTab('tab1');
+             }}
+            >Contact Page</a>
 
-            <a className={(activeTab === 'tab5' ? `left-nav-tab-selected` : `left-nav-tab`)}
-             onClick={() => setActiveTab('tab5')}
+            <a className={(activeSection === 'website' ? `left-nav-tab-selected` : `left-nav-tab`)}
+             onClick={() => {
+              setActiveSection('website');
+              setActiveTab('tab1');
+             }}
             >Website Settings</a>
 
           </div>
       </div>
-      <div className="flex flex-col overflow-hidden flex-grow w-full md:w-4/5 h-full">
-      <div className="bg-gray-300 w-full flex flex-col items-center">
-        <h1 className="mt-6">Dashboard</h1>
-        <h2 className="text-3xl text-center">you are now logged in</h2>
+      <div className="flex flex-col overflow-hidden  w-full md:w-4/5 h-full overflow-y-auto">
+      <div className="bg-gray-300 w-full flex items-center pl-4 gap-4">
+        <h1>Dashboard</h1>
         <button onClick={signout} className="mt-10 mb-10 btn2"> sign out </button>
       </div>
-        <div className="h-20 bg-gray-300 w-full mb-10 shrink-0">
-          <div className="container mx-auto max-w-200 h-full flex gap-2 font-size !text-xs flex-grow">
+        <div className="w-full flex flex-col">
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabs={sectionTabs[activeSection]}/>
+      {sectionTabs[activeSection].find(tab => tab.id === activeTab)?.page}
 
-            <a className={(activeTab === 'tab1' ? `tab-selected` : `tab`)}
-             onClick={() => setActiveTab('tab1')}
-            >Art Post Settings</a>
-
-            <a className={(activeTab === 'tab2' ? `tab-selected` : `tab`)}
-             onClick={() => setActiveTab('tab2')}
-            >About Page Settings</a>
-
-            <a className={(activeTab === 'tab3' ? `tab-selected`: `tab`)}
-             onClick={() => setActiveTab('tab3')}
-            >Home Page Settings</a>
-
-            <a className={(activeTab === 'tab4' ? `tab-selected` : `tab`)}
-             onClick={() => setActiveTab('tab4')}
-            >Contact Page Settings</a>
-
-            <a className={(activeTab === 'tab5' ? `tab-selected` : `tab`)}
-             onClick={() => setActiveTab('tab5')}
-            >Website Settings</a>
-
-          </div>
-        </div>
-        <div className="w-full pl-4 pr-4 flex-1 overflow-y-auto">
-      {tabComponents[activeTab]}
         </div>
       </div>
       </div>
