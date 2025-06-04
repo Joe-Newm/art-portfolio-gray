@@ -52,13 +52,13 @@ export default function EditModal({ post, isOpen, setIsOpen }) {
 </div>
 
 
-        <button type="submit" className="mt-4 px-4 py-2 text-white rounded-md w-40">Submit</button>
+        <button type="submit" className="btn2 mt-4 px-4 py-2 text-white rounded-md w-40">Submit</button>
         </form>
 
         {/* close window button */}
         <button
           onClick={() => setIsOpen(false)}
-          className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md w-40"
+          className="btn2 mt-4 px-4 py-2 bg-red-500 text-white rounded-md w-40"
         >Close</button>
       </div>
     </div>

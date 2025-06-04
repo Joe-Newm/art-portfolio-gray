@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+.dashboard-nav {
+
+    @apply bg-cyan-950 align-center;
+
+}

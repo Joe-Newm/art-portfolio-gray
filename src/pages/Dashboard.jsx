@@ -8,6 +8,9 @@ import HomeSettings from "../components/dashboard-components/HomeSettings"
 import ContactSettings from "../components/dashboard-components/ContactSettings"
 import WebsiteSettings from "../components/dashboard-components/WebsiteSettings";
 import Tabs from "../components/Tabs";
+import ArtWork from "../components/dashboard-components/ArtWork"
+import AboutContent from "../components/dashboard-components/AboutContent"
+import WebsiteSocials from "../components/dashboard-components/WebsiteSocials"
 
 //css file
 import './dashboard.css';
@@ -55,21 +58,21 @@ export default function Dashboard() {
 const sectionTabs = {
   art: [
     { id: 'tab1', label: 'New Post', page: <ArtPosts />,},
-    { id: 'tab2', label: 'Artwork', page: <ArtPosts />},
+    { id: 'tab2', label: 'Artwork', page: <ArtWork />},
   ],
   about: [
-    { id: 'tab1', label: 'Image', page: <AboutSettings /> },
-    { id: 'tab2', label: 'Content', page: <AboutSettings />},
+    { id: 'tab1', label: 'About Image', page: <AboutSettings /> },
+    { id: 'tab2', label: 'Content', page: <AboutContent />},
   ],
   home: [
-    { id: 'tab1', label: 'Home Page Settings', page: <HomeSettings />},
+    { id: 'tab1', label: 'Home Image', page: <HomeSettings />},
   ],
   contact: [
-    { id: 'tab1', label: 'Contact Page Settings', page: <ContactSettings />},
+    { id: 'tab1', label: 'Web3Forms', page: <ContactSettings />},
   ],
   website: [
-    { id: 'tab1', label: 'Website Name', page: <WebsiteSettings /> },
-    { id: 'tab2', label: 'Socials', page: <WebsiteSettings /> }
+    { id: 'tab1', label: 'Name', page: <WebsiteSettings /> },
+    { id: 'tab2', label: 'Socials', page: <WebsiteSocials /> }
   ]
 };
 
@@ -121,13 +124,13 @@ const sectionTabs = {
       </div>
       <div className="flex flex-col overflow-hidden  w-full md:w-4/5 h-full overflow-y-auto">
       <div className="bg-gray-300 w-full flex items-center pl-4 gap-4">
-        <h1>Dashboard</h1>
-        <button onClick={signout} className="mt-10 mb-10 btn2"> sign out </button>
+        <h1 className="mt-4 mb-4">Dashboard</h1>
       </div>
         <div className="w-full flex flex-col">
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabs={sectionTabs[activeSection]}/>
+      <div className="pl-4 pr-4">
       {sectionTabs[activeSection].find(tab => tab.id === activeTab)?.page}
-
+      </div>
         </div>
       </div>
       </div>

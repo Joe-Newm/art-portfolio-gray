@@ -96,22 +96,12 @@ const aboutHandleFileChange = (e) => {
           <h2 className="text-3xl border-b-2 mb-5">About Page</h2>
 
           <form onSubmit={updateAboutPage} className="flex flex-col">
-            <div className="flex flex-col gap-6 md:flex-row mb-10">
-            {aboutPreview && (
-              <div>
-              <label>Current About Page Image</label>
-              <img src={aboutPreview} className=" w-50"/>
-              </div>
-            )}
-            <div className="flex flex-col">
-            <label>Upload About Page Image</label>
-              <label htmlFor="about-upload" className="upload-button">
-                <UploadFileIcon sx={{ fontSize: 40, color: "white" }} className=""/>
-                <p className="text-white">Upload Image</p>
-            </label>
-            <input id="about-upload" type="file" className="hidden" onChange={aboutHandleFileChange}/>
-            </div>
-            </div>
+            <label>Heading</label>
+            <input id="header" name="header" className="border-2 w-full h-10 p-4 bg-white mb-5 rounded-md" value={header} onChange={(e) => setHeader(e.target.value)}></input>
+
+            <label>Message</label>
+            <textarea className="border-2 w-full h-60 p-4 bg-white mb-5 rounded-md resize-none" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+
             <button type="submit" className="w-30 btn2">Update</button>
           </form>
       </div>
