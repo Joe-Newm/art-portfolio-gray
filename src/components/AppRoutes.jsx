@@ -13,6 +13,7 @@ import Contact from "../pages/Contact.jsx";
 import NotFound from "../components/NotFound.jsx";
 import ProtectedRoute from "../pages/ProtectedRoute.jsx";
 import DashboardNav from "./DashboardNav.jsx"
+import DashboardFooter from "./DashboardFooter.jsx"
 
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -47,7 +48,7 @@ export default function AppRoutes() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
+      {location.pathname == "/Dashboard" ? <DashboardFooter/>:<Footer />}
     </div>
   );
 }

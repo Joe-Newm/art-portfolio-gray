@@ -82,7 +82,7 @@ const sectionTabs = {
 
   return (
     <div className="  md:pr-0 dashboard-page flex flex-row w-full h-screen">
-      <div className="bg-white md:w-1/5 h-full hidden md:block border-2 border-gray-200">
+      <div className=" bg-white md:w-1/5 h-full hidden md:block border-2 border-gray-200">
           <div className=" h-full flex flex-col   mt-4">
 
             <a className={(activeSection === 'art' ? `left-nav-tab-selected` : `left-nav-tab`)}
