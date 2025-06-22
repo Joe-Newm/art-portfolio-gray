@@ -63,10 +63,10 @@ const submitPost = async (e) => {
       const postLimit = 100;
       const snapshot2 = await get(ref(db, "posts"));
 
-if (snapshot2.exists() && Object.keys(snapshot2.val()).length >= postLimit) {
-  alert("Post limit reached. You can't add more posts.");
-  return;
-}
+      if (snapshot2.exists() && Object.keys(snapshot2.val()).length >= postLimit) {
+        alert("Post limit reached. You can't add more posts.");
+        return;
+      }
 
       await push(ref(db, 'posts'), {
         imageURL: downloadURL,
