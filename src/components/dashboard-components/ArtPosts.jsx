@@ -75,6 +75,7 @@ const submitPost = async (e) => {
         availability: available
       })
       console.log('posted image successfully')
+      alert("Artwork Posted Successfully!")
 
       // clear forms 
       setTitle('');
