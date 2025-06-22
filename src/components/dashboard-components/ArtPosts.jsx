@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import { auth, db, storage } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ref, push, onValue, remove, update } from "firebase/database";
+import { ref, push, onValue, remove, update, get } from "firebase/database";
 import { deleteObject, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -59,6 +59,14 @@ const submitPost = async (e) => {
 
       const downloadURL = await getDownloadURL(snapshot.ref);
 
+      //limit amount of posts
+      const postLimit = 100;
+      const snapshot2 = await get(ref(db, "posts"));
+
+if (snapshot2.exists() && Object.keys(snapshot2.val()).length >= postLimit) {
+  alert("Post limit reached. You can't add more posts.");
+  return;
+}
 
       await push(ref(db, 'posts'), {
         imageURL: downloadURL,
