@@ -101,7 +101,7 @@ if (snapshot2.exists() && Object.keys(snapshot2.val()).length >= postLimit) {
       <div className="flex w-full justify-center container mx-auto pl-4 pr-4">
 
         <div className="h-20 mb-10 ">
-        <div className="flex flex-col  mt-10 w-200 mb-20">
+        <div className="flex flex-col max-w-200 mt-10  mb-20">
 
           <h2 className="text-3xl border-b-2 mb-5">New Art Post</h2>
 
